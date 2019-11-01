@@ -1,0 +1,29 @@
+version: "3"
+services:
+  discovery-microservice:
+    build:
+      context: ./discovery-microservice
+      dockerfile: Dockerfile
+    ports:
+      - "8889:8889"
+    links:
+      - "config-microservice"
+    depends_on:
+      - "config-microservice"
+    environment: # Pass environment variables to the service
+      SPRING_CLOUD_CONFIG_URI: http://192.168.99.100:8888
+    networks:
+      - backend
+  config-microservice:
+    build:
+      context: ./config-microservice
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    environment: # Pass environment variables to the service
+      SPRING_CLOUD_CONFIG_SERVER_GIT_URI: https://github.com/benayadmohamed/Chat-app-with-spring-cloud-configs
+    networks:
+      - backend
+networks:
+  backend:
+    driver: "bridge"

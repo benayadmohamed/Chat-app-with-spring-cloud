@@ -19,10 +19,11 @@ public class Message implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @CreatedDate
-    private String data;
+    private String content;
+    private Date date;
+    private boolean ack;
+    private boolean vu;
+    @ManyToOne
+    private User sender;
 
-    public Message(String data) {
-        this.data = data;
-    }
 }

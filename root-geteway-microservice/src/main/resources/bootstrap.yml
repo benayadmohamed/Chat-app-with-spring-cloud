@@ -1,9 +1,9 @@
 spring:
   application:
-    name: root-gateway-service
+    name: root-gateway-microservice
   cloud:
     config:
-      uri: http://localhost:8081
+      uri: http://localhost:8888
 #    gateway:
 #      routes:
 #        - id: security-service-route-id
